@@ -1,31 +1,23 @@
+import 'package:app_news/model/NewsResponse.dart';
 import 'package:flutter/material.dart';
 
 class NewsItem extends StatelessWidget {
-  String urlImage;
-  String newsTime;
-  String newsDescription;
-  String newsSource;
+  Article article;
 
-  NewsItem(
-      {required this.urlImage,
-      required this.newsSource,
-      required this.newsDescription,
-      required this.newsTime});
+  NewsItem({required this.article});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          Image.asset(
-            urlImage,
-            fit: BoxFit.fill,
-          ),
-          Text(newsSource),
-          Text(newsDescription),
-          Text(newsTime),
-        ],
-      ),
+    return Column(
+      children: [
+        Image.network(
+          article.url ?? '',
+          fit: BoxFit.fill,
+        ),
+        Text(article.source?.name ?? ''),
+        Text(article.description ?? ''),
+        Text(article.publishedAt ?? ''),
+      ],
     );
   }
 }
